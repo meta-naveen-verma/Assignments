@@ -2,7 +2,7 @@
  * Name 	:- ArrOperationTest
  * Date 	:- 26-02-2021
  * Author 	:- Naveen Verma
- * Purpose 	:- To test ArrayOp class 
+ * Purpose 	:- To test ArrayOperation class 
  *********************************************************************/
 import static org.junit.Assert.*;
 
