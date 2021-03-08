@@ -1,3 +1,9 @@
+/*********************************************************************
+ * Name 	:- ArrOperationTest
+ * Date 	:- 26-02-2021
+ * Author 	:- Naveen Verma
+ * Purpose 	:- To test ArrayOp class 
+ *********************************************************************/
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -12,10 +18,6 @@ public class ArrOperationTest {
 		int arr3[]={1,2,1,4},ans3=3;
 		int arr4[]={1,4,5,3,5,4,1},ans4=7;
 		ArrOperation obj=new ArrOperation();
-		/*System.out.println(obj.largestMirrorSize(arr1));
-		System.out.println(obj.largestMirrorSize(arr2));
-		System.out.println(obj.largestMirrorSize(arr3));
-		System.out.println(obj.largestMirrorSize(arr4));*/
 		
 		assertEquals(ans1,obj.largestMirrorSize(arr1));
 		assertEquals(ans2,obj.largestMirrorSize(arr2));
