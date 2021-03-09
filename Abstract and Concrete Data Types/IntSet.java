@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
-public class IntSet {
+public final class IntSet {
 	private int[] arr;
 	public IntSet(int[] ar){
 		HashSet<Integer> set = new HashSet<>(Arrays.stream(ar)
@@ -22,6 +22,9 @@ public class IntSet {
 	public int[] getIntSet(){
 		return arr;
 	}
+	public int size(){
+		return arr.length;
+	}
 	public boolean isMember(int key){
 		for (int a: arr) {
 			if(a == key){
@@ -29,9 +32,6 @@ public class IntSet {
 			}
 		}
 		return false;
-	}
-	public int size(){
-		return arr.length;
 	}
 	public boolean isSubSet(IntSet subSet){
 		for (int a : subSet.getIntSet()) {
