@@ -4,12 +4,21 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class Poly {
-	private final double[] coefficient;
-	private final int[] exponent;
+public final class Poly {
+	private  double[] coefficient;
+	private  int[] exponent;
 	public Poly(double[] coefficient, int[] exponent){
-		this.coefficient = coefficient;
-		this.exponent = exponent;
+		this.coefficient=new double[coefficient.length];
+		this.exponent=new int[coefficient.length];
+		
+		for(int i=0;i<coefficient.length;i++){
+			if(coefficient[i]>=1){
+				this.coefficient[i]=coefficient[i];
+				this.exponent[i]=exponent[i];
+			}
+			
+		}
+		
 	}
 	public double[] getCoefficient(){
 		return coefficient;
