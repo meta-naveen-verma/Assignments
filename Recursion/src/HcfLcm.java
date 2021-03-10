@@ -1,5 +1,6 @@
 import java.util.Scanner;
-class HcfLcm{
+class HcfLcm{ 
+	static int t;
 	public static int hcf(int num1, int num2)
     {
         if (num2 != 0)
@@ -21,20 +22,24 @@ class HcfLcm{
 
         System.out.println("LCM of "+num1+" and "+num2+" is ="+lcm);
     }
-	public static int lcm(int n1,int n2)
+	public static int lcm(int num1,int num2)
 	{
-		int temp,i=2,res;
-		if(n1>n2)
-			res=n1;
-		else
-			res=n2;
-		temp=res;
-		while(res%n1!=0 || res%n2!=0)
-		{
-			res=temp*i;
-			i++;
-		}
-		return res;
+				lcm(num1,num2,1);
+		        return t;
+ 	 }
+	public static int lcm(int num1,int num2,int temp)
+	{ 
+		    t=temp; 
+		    if(temp%num1 == 0 && temp%num2 == 0)
+		    {
+		        return temp;
+		    }
+		    else
+		    {
+		        temp++;
+		        lcm(num1,num2,temp);
+		        return temp;
+		    }
  
  	 }
 
