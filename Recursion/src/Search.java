@@ -1,39 +1,29 @@
 import java.util.*;
 class Search
 {
-    public static int linearsearch(int arr[], int x)
+    public static int linearsearch(int arr[], int l, int r, int x)
     {
-        int n = arr.length;
-        for (int i = 0; i < n; i++) 
-        {
-            if (arr[i] == x)
-                return i;
-        }
-        return -1;
+             if (r < l) 
+                return -1; 
+             if (arr[l] == x) 
+                return l; 
+             if (arr[r] == x) 
+                return r; 
+             return linearsearch(arr, l+1, r-1, x); 
     }
   
-    public static int binarysearch(int arr[], int x) 
-    { 
-        int l = 0, r = arr.length - 1; 
-        //Arrays.sort(arr);
-        while (l <= r) { 
-            int m = l + (r - l) / 2; 
-  
-            
-            if (arr[m] == x) 
-                return m; 
-  
-            
-            if (arr[m] < x) 
-                l = m + 1; 
-  
-            
-            else
-                r = m - 1; 
-        } 
-  
-       
-        return -1; 
+    public static int binarySearch(int arr[], int l, int r, int x) 
+    {  
+    	   if (r >= l) 
+    	   { 
+    	        int mid = l + (r - l)/2; 
+    	        if (arr[mid] == x)  
+    	        	return mid; 
+    	        if (arr[mid] > x) 
+    	        	return binarySearch(arr, l, mid-1, x); 
+    	        return binarySearch(arr, mid+1, r, x); 
+    	   } 
+    	   return -1; 
     } 
  
     public static void main(String args[]){
@@ -52,11 +42,11 @@ class Search
     	int ch=sc.nextInt();
     	while(true){
     		if(ch==1){
-    			result = linearsearch(arr, x);
+    			result = linearsearch(arr, 0, n-1, x);
     			break;
     		}
     		else if (ch==2){
-    			result = binarysearch(arr, x);
+    			result = binarySearch(arr, 0, n-1, x);
     			break;
     		}
     		else
