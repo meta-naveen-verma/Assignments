@@ -16,14 +16,12 @@ public class LoopFinder {
  
     boolean detectLoop(Node node)
     {
-        Node slow = node, fast = node;
-        while (slow != null && fast != null
-               && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
- 
-            // If slow and fast meet at same point then loop is present
-            if (slow == fast) {
+        Node incBy1 = node, incBy2 = node;
+        while (incBy1 != null && incBy2 != null
+               && incBy2.next != null) {
+        	incBy1 = incBy1.next;
+        	incBy2 = incBy2.next.next;
+            if (incBy1 == incBy2) {
                 return true;
             }
         }
