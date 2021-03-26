@@ -3,15 +3,11 @@ public class UniqueCharacter {
     public static HashMap<String,Integer> cache=new HashMap<>();
     
     public static int countUniqueCharacter(String input){
-    	boolean[] isItThere=new boolean[Character.MAX_VALUE];
-    	for(int i=0;i<input.length();i++)
-    		isItThere[input.charAt(i)]=true;
-    	int count=0;
-    	for(int i=0;i<isItThere.length;i++){
-    		if(isItThere[i]==true)
-    			count++;
+    	Set<Character> set=new HashSet<Character>();
+    	for(char c:input.toCharArray()){
+    		set.add(c);
     	}
-    	return count;
+    	return set.size();
     }
     public static void getString(){
     	System.out.println("Enter the string");
@@ -24,7 +20,7 @@ public class UniqueCharacter {
     	}
     	else{
     		if(cache.containsKey(str))
-    			System.out.println("The number of unique characters are "+cache.get(str));
+    			System.out.println("Result from catch\nThe number of unique characters are "+cache.get(str));
     		else{
     			int c=countUniqueCharacter(str);
         		cache.put(str,c);
@@ -37,7 +33,7 @@ public class UniqueCharacter {
     	Scanner sc=new Scanner(System.in);
     	int a=1;
     	while(a!=0){
-    		System.out.println("Enter 1 to countUniqueCharacter and 2 to exit");
+    		System.out.println("1.CountUniqueCharacter\n2.Exit");
         	int n=sc.nextInt();
     	   switch(n){
     	   case 1 : getString();
