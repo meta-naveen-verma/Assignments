@@ -201,6 +201,7 @@ public class GraphImplements implements Graph{
     
     public static void main(String args[]){
     	GraphImplements g=new GraphImplements(5);
+    	Scanner sc=new Scanner(System.in);
     	g.addEdge(0,1,2);
     	g.addEdge(0,3,6);
     	g.addEdge(1,2,3);
@@ -208,9 +209,29 @@ public class GraphImplements implements Graph{
     	g.addEdge(1,4,5);
     	g.addEdge(2,4,7);
     	g.addEdge(3,4,9);
-    	g.isConnected();
-    	g.primMST();
-    	g.shortestPath(2,3);
-    	g.reachable(2);
+    	
+    	while(true){
+    		System.out.println("\n1.Is Connected \n2.Minimum Spanning Tree \n3.Shortest Path \n4.Find Reachable \n5.Exit\n--->");
+    		int ch=sc.nextInt();
+    		if(ch==1){
+    			g.isConnected();
+    		}else if(ch==2){
+    			g.primMST();
+    		}else if(ch==3){
+    			System.out.print("First point--->");
+    			int p1=sc.nextInt();
+    			System.out.print("Second point--->");
+    			int p2=sc.nextInt();
+    			g.shortestPath(p1,p2);
+    		}else if(ch==4){
+    			System.out.print("Point--->");
+    			int p=sc.nextInt();
+    			g.reachable(p);
+    		}else if(ch==5){
+    			break;
+    		}else{
+    			System.out.println("Select a right Option");
+    		}
+    	}
     }
 }
