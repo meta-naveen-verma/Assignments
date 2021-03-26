@@ -1,7 +1,27 @@
+import java.util.Collections;
 import java.util.Comparator;
-public class SortByName implements Comparator<Employee>{
-	public int compare(Employee a, Employee b){
-		return (a.getName().compareTo(b.getName()));
-	}
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+public class SortByName{
+	public static HashMap<String,Employee> sortByValue(HashMap<String, Employee> hm)
+    {
+        List<Map.Entry<String, Employee> > list =
+               new LinkedList<Map.Entry<String, Employee> >(hm.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry<String, Employee> >() {
+            public int compare(Map.Entry<String, Employee> o1, 
+                               Map.Entry<String, Employee> o2)
+            {
+                return (o1.getValue().empName).compareToIgnoreCase(o2.getValue().empName);
+            }
+        });
+        HashMap<String, Employee> temp = new LinkedHashMap<String, Employee>();
+        for (Map.Entry<String, Employee> aa : list) {
+            temp.put(aa.getKey(), aa.getValue());
+        }
+        return temp;
+    }
 
 }
