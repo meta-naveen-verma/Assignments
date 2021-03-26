@@ -1,9 +1,9 @@
 import java.util.*;
 public class Employee {
-    public int empId;
+    public String empId;
     public String empName;
     public String empAddr;
-    public Employee(int id,String name,String addr){
+    public Employee(String id,String name,String addr){
     	empId=id;
     	empName=name;
     	empAddr=addr;
@@ -11,66 +11,68 @@ public class Employee {
     public String getName(){
     	return this.empName;
     }
-    public int getId(){
+    public String getId(){
     	return this.empId;
     }
     public String getAddr(){
     	return this.empAddr;
     }
     
-    public static HashMap<Integer,Employee> emp=new HashMap<>();
-    public static List<Employee> employee=new ArrayList<>();
-    public static void printMap(){
+    public static HashMap<String,Employee> emp=new HashMap<>();
+    public static void printList(){
 		if(emp.isEmpty())
 			System.out.println("No Employee is present in list");
 		else{
-			Iterator<Map.Entry<Integer,Employee>> itr =emp.entrySet().iterator();
+			Iterator<Map.Entry<String,Employee>> itr =emp.entrySet().iterator();
 			System.out.println("The employee map is");
 			System.out.println("EmpId \t      EmpName \t    EmpAddress");
 			while(itr.hasNext()){
-	            Map.Entry<Integer, Employee> entry = itr.next();
+	            Map.Entry<String, Employee> entry = itr.next();
 	            System.out.println(entry.getKey()+"\t \t"+entry.getValue().empName+"\t \t"+entry.getValue().empAddr);
 	        }
 		}
 	}
-    public static void printList(){
-    	if(emp.isEmpty())
-			System.out.println("No Employee is present in list");
-    	else{
-    		System.out.println("EmpId \t      EmpName \t   EmpAddress");
-    	for(Employee i : employee){
-    		System.out.println(i.getId()+"\t \t"+i.getName()+"\t \t"+i.getAddr());
-		   }
+    public static void addEmployee(){
+    	Scanner sc=new Scanner(System.in);
+    	System.out.print("Employee id --->");
+    	String empid=sc.next();
+    	if(emp.containsKey(empid)){
+    		System.out.println("Enployee id is already taken");
+    	}else{
+    		System.out.print("Name--->");
+    		String name=sc.next();
+    		sc.nextLine();
+    		System.out.print("Address--->");
+        	String address=sc.nextLine();
+        	Employee e= new Employee(empid,name,address);
+    		emp.put(e.empId, e);
     	}
     }
-    
     public static void main(String arg[]){
-    	Employee e1=new Employee(1,"Aman","Jaipur");
-    	Employee e2=new Employee(2,"Abhi","Ajmer");
-    	Employee e3=new Employee(3,"Avi","Jaipur");
-    	Employee e4=new Employee(4,"Payal","Kota");
-    	Employee e5=new Employee(5,"Jaya","Delhi");
-    	Employee e6=new Employee(5,"Jaya","Delhi");
-    	emp.put(e1.empId, e1);
-    	emp.put(e2.empId, e2);
-    	emp.put(e4.empId, e4);
-    	emp.put(e3.empId, e3);
-    	emp.put(e6.empId, e6);
-    	emp.put(e5.empId, e5);
-    	employee.add(e1);
-    	employee.add(e2);
-    	employee.add(e5);
-    	employee.add(e3);
-    	employee.add(e4);
-    	employee.add(e6);
-    	printList();
-    	System.out.println("Employee Sorted by Natural order ");
-		Collections.sort(employee, new SortNatural());
-		printList();
-		System.out.println("Employee Sorted by Name order ");
-		Collections.sort(employee, new SortByName());
-		printList();
-		printMap();
+    	Scanner sc = new Scanner(System.in);
+    	while(true){
+    		System.out.print("1.Add Employee\n"+
+    						 "2.Sort Employee by natural order\n"+
+    						 "3.Sort Employee by name\n"+
+    						 "4.Exit\n"+
+    						 "--->");
+    		int ch=sc.nextInt();
+    		if(ch==1){
+    			addEmployee();
+    		}else if(ch==2){
+    			printList();
+    			emp=SortNatural.sortNatural(emp);
+    			printList();
+    		}else if(ch==3){
+    			printList();
+    			emp=SortByName.sortByValue(emp);
+    			printList();
+    		}else if(ch==4){
+    			break;
+    		}else{
+    			System.out.println("\nSelect a right option");
+    		}
+    	}
 		  
     }
     
