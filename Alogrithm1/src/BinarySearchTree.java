@@ -1,4 +1,5 @@
 import java.util.*;
+
 import org.json.*;
 public class BinarySearchTree implements Dictionary{
 
@@ -6,25 +7,15 @@ public class BinarySearchTree implements Dictionary{
 	public BinarySearchTree(){
 		
 	}
-	public BinarySearchTree(JSONObject obj){
-		HashMap<String,String> m=new HashMap<>();
-		try {
-			JSONArray array=obj.getJSONArray("initial");
-			for(int i=0;i<array.length();i++){
-				m.put(array.getJSONObject(i).getString("key"), array.getJSONObject(i).getString("val"));
-			}
-			Iterator<Map.Entry<String,String>> itr = m.entrySet().iterator();
-			while(itr.hasNext()){
-				Map.Entry<String, String> i = itr.next();
-				addKey(i.getKey(),i.getValue());
-			}
-			
-			
-		} catch (JSONException e) {
-			//e.printStackTrace();
-			System.out.println(e.getMessage());
-		}
-		
+	public BinarySearchTree(JSONObject object) throws JSONException{
+		Map<String, String> map = new HashMap<String, String>();
+
+	    Iterator<String> keysItr = object.keys();
+	    while(keysItr.hasNext()) {
+	        String key = keysItr.next();
+	        String value = (String) object.get(key);
+	        addKey(key,value);
+	    }
 	}
 	
 	public void addKey(String key,String value){
@@ -142,26 +133,38 @@ public class BinarySearchTree implements Dictionary{
 	}
 	public static void main(String args[]){
 		try {
-			JSONObject obj=new JSONObject("{initial : [ {key: Mango , val:It is a fruit}"
-					+ ",{key: Happy , val:It is a feeling}"
-					+ ",{key: Sad , val:It is a feeling}]}");
+			JSONObject obj=new JSONObject("{\"Mango\":\"It is a fruit\",\"Happy\":\"It is a feeling\",\"Sad\":\"It is a feeling\"}");
+			System.out.println("JSON FILE ---> "+obj);
 			BinarySearchTree b=new BinarySearchTree(obj);
+			
+			//add key values
 			b.addKey("Apple","It is a fruit");
 			b.addKey("Zebra","It is a animal");
 			b.addKey("Okra","It is a vegetable");
 			b.addKey("Banana","It is a fruit");
 			b.addKey("Again","To repeat");
-			System.out.println(b.getValue("Okra"));
-			List<Node> o=b.sortedPrint();
-			b.printList(o);
-			b.deleteKey("Okra");
+			
+			//sorted print
 			List<Node> o1=b.sortedPrint();
 			b.printList(o1);
-			List<Node>o2=b.sortedPrintBetweenValues("Ab", "Okra");
+			
+			//Delete Key Value
+			b.deleteKey("Okra");
+			System.out.println("\n\nAfter delete Okra");
+			//sorted print
+			List<Node> o4=b.sortedPrint();
+			b.printList(o4);
+			
+			//value from key
+			System.out.println("\n\nValue of Zebra ----> "+b.getValue("Zebra")+"\n\n");
+			System.out.println("Sorted print\n");
+			List<Node> o3=b.sortedPrint();
+			b.printList(o3);
+			System.out.println("\n\nSorted print b/w  Again and Mango\n\n");
+			List<Node>o2=b.sortedPrintBetweenValues("Again", "Mango");
 			b.printList(o2);
 		} catch (JSONException e) {
 			
-			//e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 		
