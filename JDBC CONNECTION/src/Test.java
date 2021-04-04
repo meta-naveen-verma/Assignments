@@ -15,7 +15,7 @@ public class Test {
    		  
    		  Statement stmt=((java.sql.Connection) con).createStatement();  
    		
-   		  ResultSet rs=stmt.executeQuery("select t1.OID , t1.Date,t1.OrderTotal from Orders t1 INNER JOIN ShoppersOrder t2 ON t1.OID=t2.OID and t2.Status='Shipped' and SID=4 order by Date;");
+   		  ResultSet rs=stmt.executeQuery("select t1.OID, t1.OrderTotal,t1.Date from Orders t1 INNER JOIN ShoppersOrder t2 ON t1.OID=t2.OID and t2.Status='Shipped' and SID=4 group by t1.OID order by Date;");
    		  System.out.println("OID\tOrderTotal\tDate");
    		  while(rs.next())  
    		        System.out.println(rs.getInt(1)+"\t"+rs.getDouble(2)+"\t\t"+rs.getDate(3));  
@@ -24,7 +24,7 @@ public class Test {
           int result1=stmt.executeUpdate(sql);
           System.out.println("The number of rows deleted: "+ result1);
           
-          InputStream in=new FileInputStream("C:\\Users\\naveen.verma_metacub\\Downloads\\logo.JPG");
+          InputStream in=new FileInputStream("C:\\Users\\naveen.verma_metacub\\workspace\\JDBC CONNECTION\\logo.JPG");
           String sqlQuery = "insert into ProductImages (Images,PID) values (?,?)";
           PreparedStatement psmt = ((java.sql.Connection) con).prepareStatement(sqlQuery);
           for(int i=1; i<= 5;i++){
