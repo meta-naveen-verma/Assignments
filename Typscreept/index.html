@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <title>Metacube Parking System</title>
+</head>
+
+<body>
+    <!-- Nav Bar of the page which helps you to navigate directly to a particular -->
+    <nav class="nav_container">
+        <ul class="nav_list">
+        <a class="nav_tab" href="#addEmployeeSection" class="navItem">Add Employee</a>
+        <a class="nav_tab" href="#addVehicleSection" class="navItem">Add Vehicle</a>
+        <a class="nav_tab" href="#pricingSection" class="navItem">Pricing</a>
+        </ul>
+    </nav>
+    <!-- cover image of the page -->
+    <div class="page_header">
+        <h1>WELCOME TO META PARKING !</h1>
+    </div>
+    <!-- Add employee section where user can add an employee -->
+    <div id="addEmployeeSection">
+        <center>
+            <div class="collapsible">
+                <h3 class="sectionHeading">Add Employee</h3>
+                <span ></span>
+            </div>
+            <div class="content">
+                <label id="label-with-name" class="salutation hide"></label>
+                <input placeholder="Full name" type="text" class="textInput" id="fullName"
+                    onkeypress="employee.handlePress(event)" />
+                <span style="font-size:10px;color: red;" class="errorText" id="nameError">Name should contain at least 2
+                    characters and numbers are not allowed.</span>
+                <div class="radioContainer hide" id="gender" onkeypress="employee.handlePress(event)">
+                    <p>Gender</p> <br>
+                    <label>Male<input type="radio" name="gender" value="male" /><span class="checkmark"></span>
+                    </label>
+                    <label>Female<input type="radio" name="gender" value="female" /><span class="checkmark"></span>
+                    </label>
+                </div>
+                <input type="email" id="email" placeholder="Email" class="textInput hide"
+                    onkeypress="employee.handlePress(event)" />
+                    <span style="font-size:10px;color: red;" class="errorText" id="mailError">invalied email address</span>
+                <input type="password" id="password" placeholder="Password" class="textInput  hide"
+                    onkeypress="employee.handlePress(event)" />
+                <span style="font-size:10px;color: red;" class="errorText" id="passError">Password should contain at
+                    least one uppercase , one lowercase ,one number and a symbol and at least 8 charaters.</span>
+                <input type="password" id="confirm password" placeholder="Re-enter password" class="textInput hide"
+                    onkeypress="employee.handlePress(event)" />
+                <span id="cnpError" style="font-size:10px;color: red;" class="errorText">Password doesn't match</span>
+                <input type="number" id="contact" placeholder="Contact Number" class="textInput hide"
+                    onkeypress="employee.handlePress(event)" />
+                <span id="contactError" style="font-size:10px;color: red;" class="errorText">Please enter valid conatct
+                    number</span>
+                <button type="submit" class="hide" onclick="handleSubmit(event)">Add Employee</button>
+            </div>
+        </center>
+    </div>
+
+    <!-- Here user can add vehicle of an employee -->
+    <div id="addVehicleSection">
+        <center>
+            <div class="collapsible">
+                <h3 class="sectionHeading">Add Vehicle</h3>
+                <span class="show"></span>
+            </div>
+            <div class="content">
+                <input placeholder="Model Name" type="text" class="textInput" onkeypress="vehicle.handlePress(event)"
+                    id="name" />
+                <div class="radioContainer hide" id="type" onkeypress="vehicle.handlePress(event)">
+                    <p>What is your vehicle Type?</p><br>
+                    <label>Cycle<input type="radio" name="type" value="cycle"
+                            onchange="update.updatePriceSection(event)" /><span class="checkmark"></span>
+                    </label>
+                    <label>Motor Cycle<input type="radio" name="type" value="bike"
+                            onchange="update.updatePriceSection(event)" /><span class="checkmark"></span>
+                    </label>
+                    <label>Four Wheeler<input type="radio" name="type" value="car"
+                            onchange="update.updatePriceSection(event)" /><span class="checkmark"></span>
+                    </label>
+                </div>
+                <input placeholder="Vehicle Number" type="text" class="textInput hide"
+                    onkeypress="vehicle.handlePress(event)" id="vehNum" />
+                <input placeholder="Employee Id" type="text" class="textInput hide"
+                    onkeypress="vehicle.handlePress(event)" id="empId" />
+                <textarea rows="5" placeholder="Identification" class="hide" onkeypress="vehicle.handlePress(event)"
+                    id="ident"></textarea>
+                <button type="submit" class="hide" onclick="handleSubmit(event)">Add Vehicle</button>
+            </div>
+        </center>
+    </div>
+    </div>
+    <!-- Here employee can choose the package accor. to their convinience -->
+    <div id="priceSection">
+        <center>
+            <div class="collapsible">
+                <h3 class="sectionHeading">Pricing</h3>
+                <span class="show"></span>
+            </div>
+            <div class=" content">
+                <div id="pricingSection" class="pricingSection">
+                    <div id="cycle" class="pricingSection">
+                    <div class="priceCard" >
+                        <span class="vehicleType">Cycle</span><br /><br />
+                        <div class="circle">
+                            <p style="font-size: 10px;"><span class="bestPrice">$5</span><br />/daily</p>
+                        </div>
+                        <p class="allOffers">$5 daily<br />$100 Monthly<br />$500 yearly</p>
+                        <button onclick="vehicle.setTotal_5_USD(); handleGet(event)">Get</button>
+                    </div>
+                    <div class="priceCard" >
+                        <span class="vehicleType">Cycle</span><br /><br />
+                        <div class="circle">
+                            <p style="font-size: 10px;"><span class="bestPrice">$100</span><br />/Month</p>
+                        </div>
+                        <p class="allOffers">$5 daily<br />$100 Monthly<br />$500 yearly</p>
+                        <button onclick="vehicle.setTotal_100_USD(); handleGet(event)">Get</button>
+                    </div>
+                    <div class="priceCard" >
+                        <span class="vehicleType">Cycle</span><br /><br />
+                        <div class="circle">
+                            <p style="font-size: 10px;"><span class="bestPrice">$500</span><br />/yearly</p>
+                        </div>
+                        <p class="allOffers">$5 daily<br />$100 Monthly<br />$500 yearly</p>
+                        <button onclick="vehicle.setTotal_500_USD(); handleGet(event)">Get</button>
+                    </div>
+                </div>
+                <div id="bike" class="pricingSection">
+                    <div class="priceCard" >
+                        <span class="vehicleType">Motor Cycle</span><br /><br />
+                        <div class="circle">
+                            <p style="font-size: 10px;"><span class="bestPrice">$10</span><br />/Daily</p>
+                        </div>
+                        <p class="allOffers">$10 daily<br />$200 Monthly<br />$1000 yearly</p>
+                        <button onclick="vehicle.setTotal_10_USD(); handleGet(event)">Get</button>
+                    </div>
+                    <div class="priceCard" >
+                        <span class="vehicleType">Motor Cycle</span><br /><br />
+                        <div class="circle">
+                            <p style="font-size: 10px;"><span class="bestPrice">$200</span><br />/Month</p>
+                        </div>
+                        <p class="allOffers">$10 daily<br />$200 Monthly<br />$1000 yearly</p>
+                        <button onclick="vehicle.setTotal_200_USD(); handleGet(event)">Get</button>
+                    </div>
+                    <div class="priceCard" >
+                        <span class="vehicleType">Motor Cycle</span><br /><br />
+                        <div class="circle">
+                            <p style="font-size: 10px;"><span class="bestPrice">$1000</span><br />/Yearly</p>
+                        </div>
+                        <p class="allOffers">$10 daily<br />$200 Monthly<br />$1000 yearly</p>
+                        <button onclick="vehicle.setTotal_1000_USD(); handleGet(event)">Get</button>
+                    </div>
+                </div>
+                <div id='car'>
+                    <div class="priceCard">
+                        <span class="vehicleType">Four Wheelers</span><br /><br />
+                        <div class="circle">
+                            <p style="font-size: 10px;"><span class="bestPrice">$20</span><br />/Daily</p>
+                        </div>
+                        <p class="allOffers">$20 daily<br />$500 Monthly<br />$3500 yearly</p>
+                        <button onclick="vehicle.setTotal_20_USD(); handleGet(event)">Get</button>
+                    </div>
+                    <div class="priceCard">
+                        <span class="vehicleType">Four Wheelers</span><br /><br />
+                        <div class="circle">
+                            <p style="font-size: 10px;"><span class="bestPrice">$500</span><br />/Month</p>
+                        </div>
+                        <p class="allOffers">$20 daily<br />$500 Monthly<br />$3500 yearly</p>
+                        <button onclick="vehicle.setTotal_500_USD(); handleGet(event)">Get</button>
+                    </div>
+                    <div class="priceCard">
+                        <span class="vehicleType">Four Wheelers</span><br /><br />
+                        <div class="circle">
+                            <p style="font-size: 10px;"><span class="bestPrice">$3500</span><br />/Yearly</p>
+                        </div>
+                        <p class="allOffers">$20 daily<br />$500 Monthly<br />$3500 yearly</p>
+                        <button onclick="vehicle.setTotal_3500_USD(); handleGet(event)">Get</button>
+                    </div>
+                </div>
+            </div>
+        </center>
+    </div>
+    <div id="total_bill">
+        <center>
+            <div class="collapsible">
+                <h3 class="sectionHeading">total_bill</h3>
+                <span class="show"></span>
+            </div>
+            <label id="demoLable"></label>
+        </center>
+    </div>
+    </div>
+</body>
+<script src="assets/TS/helper.ts"></script>
+<script src="assets/TS/Vehicle.ts"></script>
+<script src="assets/TS/Employee.ts"></script>
+<script src="assets/TS/app.ts"></script>
+<script src="assets/js/update.js"></script>
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+</script>
+
+</html>
